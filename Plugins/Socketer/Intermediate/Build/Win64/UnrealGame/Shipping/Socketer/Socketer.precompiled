@@ -1,0 +1,8 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\Socketer\\Module.Socketer.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\Socketer\\Socket.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\Socketer\\Socketer.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\Socketer\\SocketerBPLibrary.cpp.obj"
+	]
+}
