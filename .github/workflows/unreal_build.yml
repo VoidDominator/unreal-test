@@ -1,1 +1,56 @@
+# This is a GitHub Actions workflow file for building an Unreal Engine 5.5 project.
+# It currently uses a stub for the Unreal Engine setup, as GitHub Actions does not support Unreal Engine 5.5 natively.
+# To make this functional, you will need to set up a self-hosted runner with Unreal Engine 5.5 installed or use a Docker container with UE preinstalled.
+name: Unreal Engine 5.5 Build (Stub)
 
+on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  build:
+    runs-on: windows-latest # This will be changed to a self-hosted runner with Unreal Engine 5.5 installed
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true # Use this if you have Git LFS files
+    
+    # You'll need to set up Unreal Engine - this might involve installing it from Epic Games
+    # or using a Docker container with UE preinstalled
+    - name: Set up Unreal Engine 5.5
+      run: |
+        # This is a placeholder
+        echo "Setting up Unreal Engine 5.5"
+        # You might need to install UE5.5 here because it is not available in the default GitHub Actions runners
+        # So you need to have a custom runner with UE5.5 installed or ready to be used
+    
+    - name: Build Unreal Project
+      uses: OrchidIsle/UE5-Build-Project@latest
+      with:
+        # Update these paths to match your environment
+        RUNUAT_PATH: '${{ github.workspace }}/UnrealEngine/Engine/Build/BatchFiles/RunUAT.bat'
+        UPROJECT_PATH: '${{ github.workspace }}/src/unreal/unreal-test/YourProject.uproject'
+        BUILD_CONFIG: 'Development'
+        PLATFORM: 'Win64'
+        CLEAN: true
+        COOK: true
+        STAGE: true
+        PACKAGE: true
+        PAK: true
+        SERVER: false
+        ARCHIVE: true
+        ARCHIVE_PATH: '${{ github.workspace }}/Build'
+        NULLRHI: true # Set to true if running in a headless environment
+        EDITOR: false # Set to true if you need to build the editor
+    
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: unreal-build
+        path: '${{ github.workspace }}/Build'
+        retention-days: 7
